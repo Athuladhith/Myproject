@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>E-Buy - Bootstrap Shop Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                            class="text-primary font-weight-bold border px-3 mr-1">E</span>Buy</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                {{!-- <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products" name="search">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"><button id="searchButton" onclick="searchProduct()"
+                                        style="height: 25px;border:1px solid rgb(235, 230, 231) "
+                                        class="rounded">Search</button></i>
+                            </span>
+                        </div>
+                    </div>
+                </form> --}}
+                <form>
+               <div class="input-group-append">
+                        <input type="text" class="form-control" placeholder="Search for products" id="searchInput">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search">
+                                    <button id="searchButton" onclick="searchProduct()"
+                                        style="height: 25px; border: 1px solid rgb(235, 230, 231)"
+                                        class="rounded">Search</button>
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="item_card"></div>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="/wishlist" class="btn border">
+                    <i class="fas fa-heart text-primary"></i>
+                    {{!-- <span class="badge">0</span> --}}
+                </a>
+                <a href="/cart" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    {{!-- <span class="badge">0</span> --}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            
+            <div class="col-lg-9 mx-auto mb-2">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                                class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" >
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/" class="nav-item nav-link">Home</a>
+                            <a href="/shop" class="nav-item nav-link">Shop</a>
+                            {{!-- <a href="/productdetails" class="nav-item nav-link">Shop Detail</a> --}}
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                    {{!-- <a href="checkout.html" class="dropdown-item">Checkout</a> --}}
+                                </div>
+                            </div>
+                            {{!-- <a href="contact.html" class="nav-item nav-link">Contact</a> --}}
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            {{#if userData1}}
+                            <a class="nav-item nav-link  active">{{isLogged}}</a>
+                            <a href="/profile" class="nav-item nav-link">Profile</a>
+                            <a href="/logout" class="nav-item nav-link">Logout</a>
+                            {{else}}
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                            <a href="/register" class="nav-item nav-link">Register</a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order History</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+</head>
+<style>
+     .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    
+
+    
+
+   
+
+    body {
+        background-color: #f5f3f3;
+    }
+
+    .table-container {
+        max-width: 1075px;
+        margin: 0 auto;
+        
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+   
+    .error{
+    color: red;
+  }
+</style>
+<body>
+    {{!-- <div class="container"> --}}
+        <div class="table-container">
+            <div class="form-container">
+                <h1>Order History</h1>
+                <table id="myTable" class="table order-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date Ordered</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Payment Mode</th>
+                            <th>Address</th>
+                            <th>Details </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orderData}}
+                        <tr>
+                            <td>{{this._id}}</td>
+                            <td>{{formatDate this.dateOrdered "DD-MM-YYYY HH:mm:ss"}}</td>
+
+
+                            {{#if (eq this.status "ordered")}}
+                            <td class="status ordered">{{this.status}}</td>
+                            {{else if (eq this.status "shipped")}}
+                            <td class="status shipped">{{this.status}}</td>
+                            {{else if (eq this.status "delivered")}}
+                            <td class="status delivered">{{this.status}}</td>
+                            {{else if (eq this.status "cancelled")}}
+                            <td class="status cancelled">{{this.status}}</td>
+                            {{else if (eq this.status "returned")}}
+                            <td class="status returned">{{this.status}}</td>
+                            {{/if}}
+
+
+                            <td>Rs {{this.totalBill}}</td>
+                            <td>{{this.paymentMode}}</td>
+                            <td>
+                                {{this.shippingAddress.address1}},<br>
+                                {{this.shippingAddress.address2}},{{this.shippingAddress.city}},
+                                <br>{{this.shippingAddress.state}}
+
+                            </td>
+                            <td><a href="/orderhistorydetails/?id={{this._id}}"
+                                    class="btn btn-primary btn-sm ">View
+                                    Details</a></td>
+
+                        </tr>
+                        {{/each }}
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bootstrap JS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "order": [[1, "desc"]]
+        });
+    });
+</script>

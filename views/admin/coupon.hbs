@@ -1,0 +1,210 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    .navbar {
+      background-color: #d39292;
+      ;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 20px 30px;
+    }
+
+    .navbar a {
+      color: #f1eded;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+
+
+
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">Coupon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/addoffer">Offer</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9"></script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/stylesheets" href="/stylesheets/coupon.css">
+
+
+    <title>Coupons</title>
+</head>
+
+<style>
+    .coupon {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .coupon h2 {
+        margin-top: 0;
+        font-size: 30px;
+    }
+
+    .coupon p {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .coupon .code {
+        font-size: 24px;
+        font-weight: bold;
+        color: #f00;
+        margin-bottom: 10px;
+    }
+
+    .coupon .expiry {
+        font-size: 18px;
+        color: #999;
+        margin-bottom: 10px;
+    }
+
+    .coupon .details {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .coupon .status {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .coupon .valid {
+        color: #0f0;
+    }
+
+    .coupon .expired {
+        color: #f00;
+    }
+
+    .btn-success {
+        color: rgb(0, 0, 0);
+        background-color: rgb(208, 156, 167);
+    }
+</style>
+
+<body>
+
+
+
+    <br>
+   <div class="error-content text-center" style="background-image: url(/image/9ba09080924795.5cef394f1046e-COPY.jpg); background-size: cover;">
+  <div class="container">
+    <h2 class="section-title px-5">
+      <span class="px-2" style="color: #ee9393; font-size: 36px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+        Welcome to our <strong>Coupon</strong> section!
+      </span>
+    </h2>
+    <p style="color: rgb(19, 19, 19);"></p>
+    
+  </div><!-- End .container -->
+   <a href="/admin/addcoupon" class="btn btn-success" style="margin-left: 25px;">Add
+            Coupon</a>
+<br>
+</div>
+<br>
+    <div class="col-9 col-md-12">
+       
+        <div class="row pb-4">
+            <div class="col-12 pb-1">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    
+                    {{#each couponData}}
+                    {{!-- <div class="container " style="display: flex;"> --}}
+                        <div class="coupon">
+                            <div class="bg-white card addresses-item mb-5 shadow p-5  bg-white rounded">
+
+                                <h4>Get Rs {{this.discount}} off your purchase!</h4>
+                                <p class="code">{{this.code}}</p>
+                                <p class="expiry">Expires on {{formatDate this.expiryDate "DD-MM-YYY HH:mm:ss"}}</p>
+
+                                <p class="details">Minimum bill: {{this.minBill}}</p>
+                                <p class="status valid">Status: {{this.status}}</p>
+                                <br>
+
+                            </div>
+
+
+                        </div>
+
+
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>   
+        
+       
+
+
+
+
+</body>
+
+</html>

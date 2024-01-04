@@ -1,0 +1,160 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="/owlcarousel/assets/owl.carousel.min.css">
+  <style>
+    .navbar {
+      background-color: #d39292;
+      ;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 20px 30px;
+    }
+
+    .navbar a {
+      color: #f1eded;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+<!-- Absolute Path -->
+<script src="/lib/easing/easing.min.js"></script>
+
+<!-- Relative Path -->
+<script src="./lib/easing/easing.min.js"></script>
+
+
+
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">Coupon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/banner">Banner</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9"></script>
+
+</body>
+</html>
+
+
+
+
+
+<style>
+    header {
+        background-color: rgb(237, 236, 236);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #f2f2f2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    .header {
+        border-bottom: 1px solid #eeeded;
+    }
+
+    .card {
+        background-color: rgb(233, 231, 231);
+    }
+
+    .card-body {
+        text-align: center;
+    }
+     .btn-success {
+        color: rgb(0, 0, 0);
+        background-color: rgb(208, 156, 167);
+    }
+</style>
+
+<header>
+   <div class="error-content text-center" style="background-image: url(/image/9ba09080924795.5cef394f1046e-COPY.jpg); background-size: cover;">
+  <div class="container">
+    <h2 class="section-title px-5">
+      <span class="px-2" style="color: #ffffff; font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+       Welcome to Admin Dashboard
+      </span>
+    </h2>
+    <p style="color: #ffffff; font-size: 24px;">Click here to access the sales report,</p>
+    <a  href="/admin/salesreport" class="btn btn-success btn-lg">Sales Report</a>
+  </div><!-- End .container -->
+</div>
+
+</header>
+
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Users</h2>
+                    <h3 class="card-text">{{users}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Products</h2>
+                    <h3 class="card-text">{{products}}</h3>
+                </div>
+            </div>
+       
+

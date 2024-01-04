@@ -1,0 +1,370 @@
+
+
+    <html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <style>
+    .navbar {
+      background-color: #d39292;
+      ;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 20px 30px;
+    }
+
+    .navbar a {
+      color: #f1eded;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">Coupon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/addoffer">Offer</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  
+
+
+<style>
+    header {
+        background-color: rgb(237, 236, 236);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #f2f2f2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    .header {
+        border-bottom: 1px solid #eeeded;
+    }
+
+    .card {
+        background-color: rgb(233, 231, 231);
+    }
+
+    .card-body {
+        text-align: center;
+    }
+     .btn-success {
+        color: rgb(0, 0, 0);
+        background-color: rgb(208, 156, 167);
+    }
+</style>
+
+<header>
+   <div class="error-content text-center" style="background-image: url(/image/9ba09080924795.5cef394f1046e-COPY.jpg); background-size: cover;">
+  <div class="container">
+    <h2 class="section-title px-5">
+      <span class="px-2" style="color: #ffffff; font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+       Welcome to Admin Dashboard
+      </span>
+    </h2>
+    <p style="color: #ffffff; font-size: 24px;">Click here to access the sales report,</p>
+    <a  href="/admin/salesreport" class="btn btn-success btn-lg">Sales Report</a>
+  </div><!-- End .container -->
+</div>
+
+</header>
+
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Users</h2>
+                    <h3 class="card-text">{{users}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Products</h2>
+                    <h3 class="card-text">{{products}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Orders</h2>
+                    <h3 class="card-text">{{orders}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Total Revenue</h2>
+                            <h3 class="card-text">{{totalRevenue}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 style="text-align: center;">Sales Data</h5>
+                    <hr>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 style="text-align: center;">Payment Data</h5>
+                    <hr>
+                    <canvas id="myChart2"></canvas>
+                    <input id="cashondelivery" type="hidden" name="cashondelivery" value="{{cashOnDeliveryCount}}">
+                    <input id="razorpay" type="hidden" name="razorpay" value="{{razorPayCount}}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 style="text-align: center;">Category Wise Sales</h5>
+                    <hr>
+                    <canvas id="myChart3"></canvas>
+                    <input id="categorysales" type="hidden" name="shoes" value="{{categorysale.category}}">
+                    <input id="razorpay" type="hidden" name="shirts" value="{{categorysale.category}}">
+                </div>
+            </div>
+        </div>
+        <!-- Sales Report Box -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Sales Report</h5>
+                    <hr>
+                    <div class="sales-report-form">
+                        <form action="/admin/daily-report" method="post">
+                            <label for="daily">Daily sales</label>
+                            <input type="date" name="daily" id="daily">
+                            <button class="btn btn-primary" type="submit">View</button>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="sales-report-form">
+                        <form action="/admin/monthly-report" method="post">
+                            <label for="monthly">Monthly sales</label>
+                            <input type="month" name="month" id="month">
+                            <button class="btn btn-primary" type="submit">View</button>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="sales-report-form">
+                        <form action="/admin/yearly-report" method="post">
+                            <label for="yearly">Yearly sales</label>
+                            <input type="number" name="yearly" id="yearly" min="2022" max="2024" value="2023">
+                            <button class="btn btn-primary" type="submit">View</button>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="sales-report-form">
+                     
+                       <a href="/admin/categorysale" class="btn-primary">CATEGORY SALES </a>
+                       
+
+                
+                       
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+ 
+
+ <div>
+    <a style="float: right;" href="/admin/salesreport" class="btn btn-success btn-lg">Sales Report</a>
+</div> 
+
+<br>
+<br>
+<br>
+<br>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<!-- Sales Data by month bar graph orderCounts -->
+<script>
+    const orderCounts = {{{ json orderCounts }}};
+
+    const dates = orderCounts.map(order => order.month);
+    const counts = orderCounts.map(order => order.count);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Total orders',
+                data: counts,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<!-- Payment Data -->
+<script>
+    const ctx2 = document.getElementById("myChart2").getContext("2d");
+    const cashOnDeliveryCount = parseInt(document.getElementById("cashondelivery").value);
+    const razorPayCount = parseInt(document.getElementById("razorpay").value);
+
+    new Chart(ctx2, {
+        type: "pie",
+        data: {
+            labels: ['Cash on Delivery', 'RazorPay'],
+            datasets: [{
+                label: 'Payment Method',
+                data: [cashOnDeliveryCount, razorPayCount],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        }
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+{{!-- CATEGORY WISE SALES --}}
+
+<!-- Category wise Sales -->
+<script>
+  // Assuming categorysale is an object with category counts
+  const catOrderCounts = {{{ json categorysale}}};
+
+  // Convert the object into an array of objects
+  const catOrderCountsArray = Object.keys(catOrderCounts).map(category => ({
+    category,
+    count: catOrderCounts[category]
+  }));
+
+  // Extract names and counts from the array
+  const catNames = catOrderCountsArray.map(order => order.category);
+  const catCounts = catOrderCountsArray.map(order => order.count);
+
+  const ctx3 = document.getElementById("myChart3");
+  
+  new Chart(ctx3, {
+    type: "pie",
+    data: {
+      labels: catNames,
+      datasets: [{
+        label: 'Total Count',
+        data: catCounts,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    }
+  });
+
+</script>
+</body>
+</html>

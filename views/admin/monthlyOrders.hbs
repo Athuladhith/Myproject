@@ -1,0 +1,228 @@
+ <html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    .navbar {
+      background-color: #d39292;
+      ;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 20px 30px;
+    }
+
+    .navbar a {
+      color: #f1eded;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+
+
+
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">Coupon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/banner">Banner</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9"></script>
+
+</body>
+</html>  
+
+
+<style>
+    header {
+        background-color: rgb(237, 236, 236);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #f2f2f2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    .header {
+        border-bottom: 1px solid #eeeded;
+    }
+
+    .card {
+        background-color: rgb(233, 231, 231);
+    }
+
+    .card-body {
+        text-align: center;
+    }
+     .btn-success {
+        color: rgb(0, 0, 0);
+        background-color: rgb(208, 156, 167);
+    }
+</style>
+
+
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        {{!-- <form class="d-none d-md-flex ms-4">
+            <input class="form-control border-0" type="search" placeholder="Search">
+        </form> --}}
+        
+    </nav>
+    <!-- Navbar End -->
+  
+
+
+{{#if monthlyOrders}}
+<div>
+
+<button class="btn btn-success ml-3 mt-3" onclick="printPage()">Print</button>
+</div>
+
+<div class="container mt-3">
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Total Order</th>
+                <th scope="col"></th>
+                <th scope="col">Total Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>{{monthlyOrders.length}}</td>
+                <td></td>
+                <td>{{totalMonthlyBill}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+
+            <tr>
+                <th scope="col">ORDER ID</th>
+
+
+                <th scope="col">ORDER DATE</th>
+                {{!-- <th scope="col">DISCOUNT</th> --}}
+                <th scope="col">TOTAL BILL</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {{#each monthlyOrders}}
+            <tr>
+
+                <td>{{this._id}}</td>
+
+                <td>{{this.dateOrdered}}</td>
+                {{!-- <td>{{this.discount}}</td> --}}
+                <td>{{this.totalBill}}</td>
+
+
+            </tr>
+            {{/each}}
+
+
+
+        </tbody>
+    </table>
+</div>
+ {{else}}
+ <div class="container p-5">
+    <div>
+        <h2>Nothing Here..</h2>
+    </div>
+{{/if}}
+ </div>
+
+<script>
+    function printPage() {
+  window.print();
+}
+
+</script>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/chart/chart.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script src="/admin/js/main.js"></script>
+

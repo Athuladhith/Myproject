@@ -1,0 +1,381 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit Product</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/editproduct.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    .navbar {
+      background-color: #d39292;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 20px 30px;
+    }
+
+    .navbar a {
+      color: #f1eded;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Your other styles go here */
+
+    /* Style the form container */
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Style the form fields */
+    .form-field {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    /* Style the label */
+    .form-field label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    /* Style the image containers */
+    .existing-images {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .existing-images .image-container {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Style the input */
+    .form-field input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Style the image preview */
+    .image-preview {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    /* Style the image containers */
+    .image-container {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    /* Style the submit button */
+    .submit-button {
+      padding: 0.5rem;
+      background-color: #de9b9b;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <!-- Your navbar code here -->
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">Coupon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/banner">Banner</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h1>Edit Product</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="form-field">
+        <label for="name">Name:</label>
+        <input type="text" id="name" class="form-control" value="{{product.name}}" name="name">
+      </div>
+
+      <div class="form-field">
+        <label for="description">Description:</label>
+        <input type="text" id="description" class="form-control" value="{{product.description}}" name="description">
+      </div>
+
+      <div class="form-field">
+        <label for="image">Image:</label>
+        <div class="existing-images" id="existingImagesContainer">
+          <!-- Display existing images here -->
+          {{#each images}}
+          <div class="image-container">
+            <img src="/uploads/{{this}}" style="width: 100px; height: 100px;">
+            <button type="button" onclick="return deleteproduct('{{this._id}}')">Delete</button>
+          </div>
+          {{/each}}
+        </div>
+        <input type="file" id="image" class="form-control" name="image" onchange="previewImages(event)" multiple>
+        <div class="image-preview" id="imagePreviewContainer"></div>
+      </div>
+
+      <div class="form-field">
+        <label for="category">Category:</label>
+        <select id="category" name="category" input type="text">
+          <option value="{{product.category}}">{{product.category}}</option>
+          {{#each categoryData}}
+          <option value="{{this.name}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="price">Price:</label>
+        <input type="number" id="price" value="{{product.price}}" name="price">
+      </div>
+
+      <div class="form-field">
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" value="{{product.brand}}" name="brand">
+      </div>
+
+      <div class="form-field">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="{{product.quantity}}" name="quantity">
+      </div>
+
+      <div>
+        <p style="color: green;">
+          {{message}}
+        </p>
+      </div>
+
+      <button class="submit-button" type="submit">Submit</button>
+      <br>
+      <a href="/admin/product" class="btn .submit-button">Go Back</a>
+
+      <input type="hidden" name="id" value="{{product._id}}">
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    // Your JavaScript code here
+        async function deleteproduct(imageid) {
+        Swal.fire({
+          console.log("haiiiiiiiiiiii")
+            title: 'Are you sure?',
+            text: 'This item will be removed from your cart!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            // If the user confirms the deletion
+            if (result.value) {
+                // Send a POST request to remove the product from the backend
+                fetch("/deleteproduct", {
+                 method: 'POST',
+                 headers: {
+                 'Content-Type': 'application/json'
+                 },
+                  body: JSON.stringify({
+                   imageid: imageid
+    })
+})
+
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result); // Log the response to the console
+                        if (result.res == "success") {
+                            // Show a success message using SweetAlert2
+                            Swal.fire(
+                              console.log("heloooooooooooo")
+                                'Deleted!',
+                                'This item has been removed from your cart.',
+                                'success'
+                            ).then(() => {
+                              console.log("yessssssss")
+                                // Reload the page after the success message is shown
+                                location.reload();
+                            });
+                        } else {
+                            // If there is an error, show an error message using SweetAlert2
+                            Swal.fire(
+                                'Error',
+                                'There was an error removing the item from your cart.',
+                                'error'
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error); // Log any errors to the console
+                        // Show an error message using SweetAlert2
+                        Swal.fire(
+                            'Error',
+                            'There was an error removing the item from your cart.',
+                            'error'
+                        );
+                    });
+            }
+        })
+    }
+  </script>
+
+  <!-- ... (previous HTML code) ... -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const existingImages = {{json product.images}};
+    const previewContainer = document.getElementById('imagePreviewContainer');
+
+    for (let i = 0; i < existingImages.length; i++) {
+      const imageUrl = existingImages[i];
+
+      const img = new Image();
+      img.src = imageUrl;
+      img.style.width = '100px';
+      img.style.height = '100px';
+
+      // Create a container for each image with a delete button
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'image-container';
+
+      // Append the image to the container
+      imageContainer.appendChild(img);
+
+      // Create a delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.innerText = 'Delete';
+      deleteButton.addEventListener('click', function () {
+        // Remove the image container when the delete button is clicked
+        imageContainer.remove();
+        // Send AJAX request to delete the image on the server
+        deleteImage('{{product._id}}', imageUrl); // Pass product ID to deleteImage
+      });
+
+      // Append the delete button to the container
+      imageContainer.appendChild(deleteButton);
+
+      // Append the image container to the preview container
+      previewContainer.appendChild(imageContainer);
+    }
+  });
+
+  function deleteImage(productId, imageUrl) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `/editproduct?id=${productId}&image=${imageUrl}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log('Image deleted successfully from the server:', imageUrl);
+      }
+    };
+    xhr.send();
+  }
+
+  function previewImages(event) {
+    const previewContainer = document.getElementById('imagePreviewContainer');
+    previewContainer.innerHTML = '';
+
+    const files = event.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      const reader = new FileReader();
+      const img = new Image();
+      img.style.width = '100px';
+      img.style.height = '100px';
+
+      reader.onload = (function (img) {
+        return function (e) {
+          img.src = e.target.result;
+        };
+      })(img);
+
+      reader.readAsDataURL(file);
+
+      // Create a container for each image with a delete button
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'image-container';
+
+      // Append the image to the container
+      imageContainer.appendChild(img);
+
+      // Create a delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.innerText = 'Delete';
+      deleteButton.addEventListener('click', function () {
+        // Remove the image container when the delete button is clicked
+        imageContainer.remove();
+      });
+
+      // Append the delete button to the container
+      imageContainer.appendChild(deleteButton);
+
+      // Append the image container to the preview container
+      previewContainer.appendChild(imageContainer);
+    }
+  }
+</script>
+
+<!-- ... (remaining HTML code) ... -->
+
+</body>
+
+</html>
